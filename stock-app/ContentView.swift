@@ -20,12 +20,12 @@ struct ContentView: View {
 
                     }
                     
-                    if (selectedTab == Tab.message) {
+                    if (selectedTab == Tab.gainers) {
                         Text("message").bold()
 
                     }
                     
-                    if (selectedTab == Tab.refreshSymbol) {
+                    if (selectedTab == Tab.losers) {
                         Text("refresh").bold()
 
                     }

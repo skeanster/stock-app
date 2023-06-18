@@ -8,8 +8,45 @@
 import SwiftUI
 
 struct homeScreen: View {
+    func clickGainers() {
+        print("gainers")
+    }
+    
+    func clickLosers() {
+        print("losers")
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            
+            Button(action:{self.clickGainers()}) {
+                VStack {
+                    Image(systemName: "arrow.up.forward.circle.fill").font(.system(size: 60)) .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.green)
+
+                    Text("Gainers")
+                }
+                .frame(width: 200, height: 200)
+                .background(.thinMaterial)
+                .cornerRadius(10)
+            }
+            
+            Spacer()
+            
+            Button(action:{self.clickLosers()}) {
+                VStack {
+                    Image(systemName: "arrow.down.forward.circle.fill").font(.system(size: 60)) .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.red)
+                    Text("Losers")
+                }
+                .frame(width: 200, height: 200)
+                .background(.thinMaterial)
+                .cornerRadius(10)
+            }
+            
+            Spacer()
+        }
     }
 }
 

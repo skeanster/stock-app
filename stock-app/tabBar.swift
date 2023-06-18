@@ -9,8 +9,9 @@ import SwiftUI
 
 enum Tab: String, CaseIterable {
     case house
-    case message
-    case refreshSymbol = "arrow.clockwise.circle"
+    case gainers = "arrow.up.forward.circle"
+    case losers = "arrow.down.forward.circle"
+    case refresh = "arrow.clockwise.circle"
 }
 
 struct tabBar: View {
