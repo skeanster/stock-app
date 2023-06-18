@@ -8,14 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Tab = .house
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            VStack {
+                TabView(selection: $selectedTab) {
+                    if (selectedTab == Tab.house) {
+                        homeScreen()
+
+                    }
+                    
+                    if (selectedTab == Tab.message) {
+                        Text("message").bold()
+
+                    }
+                    
+                    if (selectedTab == Tab.refreshSymbol) {
+                        Text("refresh").bold()
+
+                    }
+                }
+            }
+            
+            VStack {
+                Spacer()
+                tabBar(selectedTab: $selectedTab)
+                
+            }
         }
-        .padding()
     }
 }
 
