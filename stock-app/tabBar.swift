@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-enum Tab: String, CaseIterable {
-    case house
-    case gainers = "arrow.up.forward.circle"
-    case losers = "arrow.down.forward.circle"
-    case refresh = "arrow.clockwise.circle"
-}
-
 struct tabBar: View {
     @Binding var selectedTab: Tab
+    
+    public enum Tab: String, CaseIterable {
+        case house
+        case gainers = "arrow.up.forward.circle"
+        case losers = "arrow.down.forward.circle"
+        case refresh = "arrow.clockwise.circle"
+    }
+    
     private var fillImage: String {
         selectedTab.rawValue + ".fill"
     }

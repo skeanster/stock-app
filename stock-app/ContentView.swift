@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab: Tab = .house
+    @State var selectedTab: tabBar.Tab = tabBar.Tab.house
     
     
     var body: some View {
         ZStack {
             VStack {
                 TabView(selection: $selectedTab) {
-                    if (selectedTab == Tab.house) {
-                        homeScreen()
+                    if (selectedTab == tabBar.Tab.house) {
+                        homeScreen(selectedTab: $selectedTab)
 
                     }
                     
-                    if (selectedTab == Tab.gainers) {
-                        Text("message").bold()
+                    if (selectedTab == tabBar.Tab.gainers) {
+                        Text("Gainers").bold()
 
                     }
                     
-                    if (selectedTab == Tab.losers) {
-                        Text("refresh").bold()
+                    if (selectedTab == tabBar.Tab.losers) {
+                        Text("Losers").bold()
 
                     }
                 }

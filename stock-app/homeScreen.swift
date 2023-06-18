@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct homeScreen: View {
+    @Binding var selectedTab: tabBar.Tab
+
     func clickGainers() {
+        selectedTab = tabBar.Tab.gainers
         print("gainers")
     }
     
     func clickLosers() {
+        selectedTab = tabBar.Tab.losers
         print("losers")
     }
     
@@ -26,6 +30,7 @@ struct homeScreen: View {
                         .foregroundStyle(.green)
 
                     Text("Gainers")
+                        .foregroundColor(.black)
                 }
                 .frame(width: 200, height: 200)
                 .background(.thinMaterial)
@@ -39,6 +44,7 @@ struct homeScreen: View {
                     Image(systemName: "arrow.down.forward.circle.fill").font(.system(size: 60)) .symbolRenderingMode(.hierarchical)
                         .foregroundStyle(.red)
                     Text("Losers")
+                        .foregroundColor(.black)
                 }
                 .frame(width: 200, height: 200)
                 .background(.thinMaterial)
@@ -52,6 +58,6 @@ struct homeScreen: View {
 
 struct homeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        homeScreen()
+        homeScreen(selectedTab: .constant(tabBar.Tab.house))
     }
 }
