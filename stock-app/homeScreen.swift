@@ -9,6 +9,7 @@ import SwiftUI
 
 struct homeScreen: View {
     @Binding var selectedTab: tabBar.Tab
+    @Binding var refreshing: Bool
 
     func clickGainers() {
         selectedTab = tabBar.Tab.gainers
@@ -18,6 +19,7 @@ struct homeScreen: View {
     func clickLosers() {
         selectedTab = tabBar.Tab.losers
         print("losers")
+        print(refreshing)
     }
     
     var body: some View {
@@ -58,6 +60,6 @@ struct homeScreen: View {
 
 struct homeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        homeScreen(selectedTab: .constant(tabBar.Tab.house))
+        homeScreen(selectedTab: .constant(tabBar.Tab.house), refreshing: .constant(false))
     }
 }

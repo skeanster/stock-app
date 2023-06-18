@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedTab: tabBar.Tab = tabBar.Tab.house
+    @State var refreshing: Bool = false
     
     
     var body: some View {
@@ -16,7 +17,7 @@ struct ContentView: View {
             VStack {
                 TabView(selection: $selectedTab) {
                     if (selectedTab == tabBar.Tab.house) {
-                        homeScreen(selectedTab: $selectedTab)
+                        homeScreen(selectedTab: $selectedTab, refreshing: $refreshing)
 
                     }
                     
@@ -34,7 +35,7 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                tabBar(selectedTab: $selectedTab)
+                tabBar(selectedTab: $selectedTab, refreshing: $refreshing)
                 
             }
         }

@@ -9,17 +9,27 @@ import SwiftUI
 
 struct tabBar: View {
     @Binding var selectedTab: Tab
+    @Binding var refreshing: Bool
+    @State private var scaleFactor:CGFloat = 1
+    
     
     public enum Tab: String, CaseIterable {
         case house
         case gainers = "arrow.up.forward.circle"
         case losers = "arrow.down.forward.circle"
-        case refresh = "arrow.clockwise.circle"
     }
     
     private var fillImage: String {
         selectedTab.rawValue + ".fill"
     }
+    
+    func animateRefresh() {
+        scaleFactor = 1.2
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
+            scaleFactor = 1
+        }
+    }
+    
     
     var body: some View {
         VStack {
@@ -35,6 +45,19 @@ struct tabBar: View {
                         }
                     Spacer()
                 }
+                Spacer()
+                Image(systemName: "arrow.clockwise.circle")
+                    .scaleEffect(scaleFactor)
+                    .onTapGesture {
+                        animateRefresh()
+                        print(refreshing)
+                        refreshing = true
+                    }
+                    .animation(
+                        .easeIn(duration: 0.2)
+                        , value: scaleFactor
+                    )
+                Spacer()
             }
             .frame(width: nil, height: 60)
             .background(.thinMaterial)
@@ -46,6 +69,6 @@ struct tabBar: View {
 
 struct tabBar_Previews: PreviewProvider {
     static var previews: some View {
-        tabBar(selectedTab: .constant(.house))
+        tabBar(selectedTab: .constant(.house), refreshing: .constant(true))
     }
 }
