@@ -15,7 +15,7 @@ struct tabBar: View {
     
     
     public enum Tab: String, CaseIterable {
-        case house
+        case house = "house.circle"
         case gainers = "arrow.up.forward.circle"
         case losers = "arrow.down.forward.circle"
     }
