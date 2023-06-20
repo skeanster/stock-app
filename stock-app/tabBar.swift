@@ -11,6 +11,7 @@ struct tabBar: View {
     @Binding var selectedTab: Tab
     @Binding var refreshing: Bool
     @State private var scaleFactor:CGFloat = 1
+    @State private var rotateDegrees:CGFloat = 0
     
     
     public enum Tab: String, CaseIterable {
@@ -25,6 +26,7 @@ struct tabBar: View {
     
     func animateRefresh() {
         scaleFactor = 1.2
+        rotateDegrees = (rotateDegrees == 0 ? 360 : 0)
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
             scaleFactor = 1
         }
@@ -38,6 +40,8 @@ struct tabBar: View {
                     tab in
                     Spacer()
                     Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 20))
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)) {
                                 selectedTab = tab
@@ -47,7 +51,10 @@ struct tabBar: View {
                 }
                 Spacer()
                 Image(systemName: "arrow.clockwise.circle")
+                    .foregroundStyle(.white)
+                    .font(.system(size: 20))
                     .scaleEffect(scaleFactor)
+                    .rotationEffect(.degrees(rotateDegrees))
                     .onTapGesture {
                         animateRefresh()
                         print(refreshing)
@@ -57,10 +64,11 @@ struct tabBar: View {
                         .easeIn(duration: 0.2)
                         , value: scaleFactor
                     )
+
                 Spacer()
             }
             .frame(width: nil, height: 60)
-            .background(.thinMaterial)
+            .background(.black)
             .cornerRadius(10)
             .padding()
         }
