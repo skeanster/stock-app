@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct tabBar: View {
-    @Binding var selectedTab: Tab
+    @Binding var selectedTab: tabBar.Tab
     @Binding var refreshing: Bool
     @State private var scaleFactor:CGFloat = 1
     @State private var rotateDegrees:CGFloat = 0
@@ -57,7 +57,6 @@ struct tabBar: View {
                     .rotationEffect(.degrees(rotateDegrees))
                     .onTapGesture {
                         animateRefresh()
-                        print(refreshing)
                         refreshing = true
                     }
                     .animation(

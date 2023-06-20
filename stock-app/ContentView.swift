@@ -21,13 +21,8 @@ struct ContentView: View {
 
                     }
                     
-                    if (selectedTab == tabBar.Tab.gainers) {
-                        Text("Gainers").bold()
-
-                    }
-                    
-                    if (selectedTab == tabBar.Tab.losers) {
-                        Text("Losers").bold()
+                    if (selectedTab == tabBar.Tab.gainers || selectedTab == tabBar.Tab.losers) {
+                        GainerLoserView(selectedTab: $selectedTab, refreshing: $refreshing)
 
                     }
                 }
