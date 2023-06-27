@@ -56,15 +56,44 @@ struct GainerLoserView: View {
                 
                 
             }
-            
-            VStack {
-                ForEach(Test.allCases, id: \.rawValue) {
-                    tab in
-                    HStack {
-                        Image(systemName: "arrow.clockwise.circle")
-                        Text("ryan")
+            VStack{
+                Spacer()
+                VStack {
+                    ForEach(Test.allCases, id: \.rawValue) {
+                        tab in
+                        HStack {
+                            (isGainerTab() ?
+                            Image(systemName: "arrow.up.forward.square") :
+                            Image(systemName: "arrow.down.forward.square"))
+                            .foregroundStyle(isGainerTab() ? .green : .red)
+                            .font(.system(size: 30))
+                            
+                            VStack {
+                                Text("VTI")
+                                    .font(.system(size: 15))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text("Vanguard Total Stock Mar...")
+                                    .font(.system(size: 10))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                            Text("12%")
+                                .font(.system(size: 20))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        .padding()
+
+                        Divider()
+                         .frame(height: 1)
+                         .padding(.horizontal, 40)
+                         .background(.tertiary)
                     }
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: UIScreen.main.bounds.height - 300, alignment: .top)
+                .background(.white)
+                .cornerRadius(10)
+                .padding()
             }
         }
     }
