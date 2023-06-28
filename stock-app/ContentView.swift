@@ -16,7 +16,6 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             VStack {
-                TabView(selection: $selectedTab) {
                     if (selectedTab == tabBar.Tab.house) {
                         homeScreen(selectedTab: $selectedTab, refreshing: $refreshing)
                     }
@@ -24,13 +23,11 @@ struct ContentView: View {
                     if (selectedTab == tabBar.Tab.gainers || selectedTab == tabBar.Tab.losers) {
                         GainerLoserView(selectedTab: $selectedTab, refreshing: $refreshing)
                     }
-                }
             }
             
             VStack {
                 Spacer()
                 tabBar(selectedTab: $selectedTab, refreshing: $refreshing)
-                
             }
         }
     }

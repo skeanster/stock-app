@@ -14,13 +14,10 @@ struct homeScreen: View {
 
     func clickGainers() {
         selectedTab = tabBar.Tab.gainers
-        viewModel.fetch(method: selectedTab)
     }
     
     func clickLosers() {
         selectedTab = tabBar.Tab.losers
-        viewModel.fetch(method: selectedTab)
-
     }
     
     var body: some View {
@@ -55,7 +52,10 @@ struct homeScreen: View {
             }
             
             Spacer()
+            Spacer()
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: .infinity, alignment: .top)
+        .background(.white)
     }
 }
 

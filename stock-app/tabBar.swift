@@ -47,9 +47,6 @@ struct tabBar: View {
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)) {
                                 selectedTab = tab
-                                if (selectedTab != tabBar.Tab.house) {
-                                    viewModel.fetch(method: selectedTab)
-                                }
                             }
                         }
                     Spacer()
@@ -63,9 +60,7 @@ struct tabBar: View {
                     .onTapGesture {
                         animateRefresh()
                         refreshing = true
-                        if (selectedTab != tabBar.Tab.house) {
-                            viewModel.fetch(method: selectedTab)
-                        }                    }
+                   }
                     .animation(
                         .easeIn(duration: 0.2)
                         , value: scaleFactor

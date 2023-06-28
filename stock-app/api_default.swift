@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct Data: Hashable, Codable {
+struct Stocks: Hashable, Codable {
     let symbol: String
+    let name: String
+    let changesPercentage: Double
 }
 
 class ViewModel: ObservableObject {
-    @Published var retrievedData: [Data] = []
+    @Published var retrievedData: [Stocks] = []
     var key: String = apikey().key
     
     func fetch(method: tabBar.Tab) {
@@ -24,7 +26,6 @@ class ViewModel: ObservableObject {
             urlModifier = "losers"
         }
         
-        print(urlModifier)
         let url = URL(string: "https://financialmodelingprep.com/api/v3/stock_market/"+urlModifier+"?apikey="+key)
 
         var request = URLRequest(url: url!)
@@ -40,22 +41,21 @@ class ViewModel: ObservableObject {
                 return
             }
 
-            let json = try! JSONDecoder().decode([Data].self, from: data)
-
+            let json = try! JSONDecoder().decode([Stocks].self, from: data)
 
             DispatchQueue.main.async {
+                print("got data")
                 self.retrievedData = json
             }
-            print(json)
         }
-
+        
         task.resume()
     }
 }
 
 struct API_Default: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("api")
     }
 }
 
