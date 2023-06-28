@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var selectedTab: tabBar.Tab = tabBar.Tab.house
     @State var refreshing: Bool = false
+    @StateObject var viewModel = ViewModel()
     
     
     var body: some View {
@@ -18,12 +19,10 @@ struct ContentView: View {
                 TabView(selection: $selectedTab) {
                     if (selectedTab == tabBar.Tab.house) {
                         homeScreen(selectedTab: $selectedTab, refreshing: $refreshing)
-
                     }
                     
                     if (selectedTab == tabBar.Tab.gainers || selectedTab == tabBar.Tab.losers) {
                         GainerLoserView(selectedTab: $selectedTab, refreshing: $refreshing)
-
                     }
                 }
             }

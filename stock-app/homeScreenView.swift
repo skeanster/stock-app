@@ -10,16 +10,17 @@ import SwiftUI
 struct homeScreen: View {
     @Binding var selectedTab: tabBar.Tab
     @Binding var refreshing: Bool
+    @StateObject var viewModel = ViewModel()
 
     func clickGainers() {
         selectedTab = tabBar.Tab.gainers
-        print("gainers")
+        viewModel.fetch(method: selectedTab)
     }
     
     func clickLosers() {
         selectedTab = tabBar.Tab.losers
-        print("losers")
-        print(refreshing)
+        viewModel.fetch(method: selectedTab)
+
     }
     
     var body: some View {

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct tabBar: View {
     @Binding var selectedTab: tabBar.Tab
     @Binding var refreshing: Bool
     @State private var scaleFactor:CGFloat = 1
     @State private var rotateDegrees:CGFloat = 0
+    @StateObject var viewModel = ViewModel()
     
     
     public enum Tab: String, CaseIterable {
@@ -45,6 +47,9 @@ struct tabBar: View {
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)) {
                                 selectedTab = tab
+                                if (selectedTab != tabBar.Tab.house) {
+                                    viewModel.fetch(method: selectedTab)
+                                }
                             }
                         }
                     Spacer()
@@ -58,7 +63,9 @@ struct tabBar: View {
                     .onTapGesture {
                         animateRefresh()
                         refreshing = true
-                    }
+                        if (selectedTab != tabBar.Tab.house) {
+                            viewModel.fetch(method: selectedTab)
+                        }                    }
                     .animation(
                         .easeIn(duration: 0.2)
                         , value: scaleFactor
